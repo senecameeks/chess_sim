@@ -144,15 +144,18 @@ def speed_chess_tournament_fixed_pairing(num_players=10, num_rounds=3, rated_per
         tournament_history[round_num] = round_pairings_list # Store the actual pairs
 
         # --- Display Pairings ---
-        print(f"Round {round_num} Actual Pairings:")
+        print(f"Round {round_num} Actual Pairings:\n")
         displayed_matches = set() # Use set of sorted tuples to track displayed matches
         if not round_pairings_list:
              print("No matches played this round.")
         else:
+            board_num = 0
             for p1, p2 in round_pairings_list:
+                 board_num += 1 
                  rating_info_p1 = f"(Rated: {players[p1]['rating']})" if players[p1]['rating'] is not None else f"(Unrated, Wins: {players[p1]['wins']})"
                  rating_info_p2 = f"(Rated: {players[p2]['rating']})" if players[p2]['rating'] is not None else f"(Unrated, Wins: {players[p2]['wins']})"
-                 print(f"  {p1} {rating_info_p1} vs {p2} {rating_info_p2}")
+                 print(f"Board {board_num}:  {p1} {rating_info_p1} vs {p2} {rating_info_p2}")
+                 print("-------------------------------------------------------------------")
                  displayed_matches.add(tuple(sorted((p1, p2)))) # Add the canonical pair tuple
 
         # --- Get Round Results ---
